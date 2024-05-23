@@ -1,4 +1,4 @@
-# Sử dụng multi-stage build
+# Sử dụng multi-stage build:
 # Giai đoạn 1: Build ứng dụng React
 FROM node:20-alpine as build
 
