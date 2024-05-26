@@ -26,7 +26,7 @@ export const api = createApi({
         }),
     })
 })
- 
+  
 export const {
     useGetUserQuery,
     useDeleteUserMutation,
