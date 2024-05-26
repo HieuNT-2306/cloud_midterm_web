@@ -46,21 +46,20 @@ const User = () => {
     })
   }
   const addOrEdit = (user, resetForm) => {
-    console.log("customer", user);
     createUser(user);
     resetForm();
     setOpenPopup(false);
     if (user._id) {
       setNotify({
         isOpen: true,
-        message: 'Sửa thông tin thành công',
+        message: `Sửa thông tin của ${user.name} thành công`,
         type: 'success'
       });
     }
     else {
       setNotify({
         isOpen: true,
-        message: 'Thêm thành công',
+        message: `Thêm thành công thực tập sinh ${user.name}`,
         type: 'success'
       });
     }
@@ -72,13 +71,13 @@ const User = () => {
     setOpenPopup(true);
   }
 
-  const onDelete = (id) => {
+  const onDelete = (user) => {
     setConfirmDialog({ ...confirmDialog, isOpen: false });
-    console.log("id", id);
-    deleteUser(id);
+    console.log("id", user._id);
+    deleteUser(user._id);
     setNotify({
       isOpen: true,
-      message: 'Xóa khách hàng thành công',
+      message: `Xóa thành công thực tập sinh ${user.name}` ,
       type: 'error'
     });
   }
@@ -156,9 +155,9 @@ const User = () => {
                     onClick={() => {
                       setConfirmDialog({
                         isOpen: true,
-                        title: 'Bạn có chắc chắn muốn xóa?',
+                        title: `Bạn có chắc chắn muốn xóa sinh viên ${item.name}?`,
                         subTitle: 'Lưu ý, bạn không thể hoàn tác hành động này!',
-                        onConfirm: () => { onDelete(item._id)}
+                        onConfirm: () => { onDelete(item)}
                       })
                     }}
                   />
@@ -170,7 +169,7 @@ const User = () => {
         </TblContainer>
         <TblPagination />
         <Popup
-          title="Thêm / sửa khách hàng"
+          title="Thêm / sửa thông tin thực tập sinh"
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
         >

@@ -23,8 +23,8 @@ export default function Usetable(data, headCells, filterFn) {
     }
   };
   const pages = [5, 10, 25];
-  const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(pages[page]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(pages[1]);
   const [order, setOrder] = useState();
   const [orderBy, setOrderBy] = useState();
 

@@ -43,6 +43,11 @@ export default function UserForm(props) {
         setErrors({
             ...temp
         });
+        if ("gender" in fieldValues)
+            temp.gender = fieldValues.gender ? "" : "Trường này không được để trống";
+        setErrors({
+            ...temp
+        });
         if (fieldValues === values)
             return Object.values(temp).every(x => x === "");
     }
