@@ -44,6 +44,6 @@ jobs:
         push: true
         tags: hieubeo2369/web:latest
 
-    # - name: Run Docker container on port 3000 on local
-    #   run: |
-    #     docker run -d -p 3000:3000 hieubeo2369/web:latest
+    - name: Run Docker container on port 3000 on local
+      run: |
+        docker run -d -p 3000:3000 hieubeo2369/web:latest
