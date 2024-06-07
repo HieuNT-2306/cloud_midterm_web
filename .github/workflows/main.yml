@@ -53,7 +53,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       run: |
-        cd cloud_final_helm_api
+        cd cloud_final_helm_web
         git config --global user.name '${{ secrets.USER_NAME }}'
         git config --global user.email '${{ secrets.USER_EMAIL }}'
         git add -A
