@@ -1,8 +1,9 @@
-name: Build and Deploy
+name: CI/CD Web
 
 on:
   push:
-    branches: [ '*' ]
+    tags:
+      - '*'
   pull_request:
     branches: [ main ]
 
@@ -37,13 +38,31 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Checkout helm config repo
+      uses: actions/checkout@v2
+      with:
+        repository: HieuNT-2306/cloud_final_helm_web
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        path: cloud_final_helm_web
+
+    - name: Update values.yaml
+      run: |
+        sed -i 's/tag: .*/tag: ${{ github.ref_name }}/' cloud_final_helm_web/web/values.yaml
+ 
+    - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      run: |
+        cd cloud_final_helm_api
+        git config --global user.name '${{ secrets.USER_NAME }}'
+        git config --global user.email '${{ secrets.USER_EMAIL }}'
+        git add -A
+        git commit -m "Update image tag to ${{ github.ref_name }}"
+        git push origin master
+
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
-        tags: hieubeo2369/web:latest
-
-    - name: Run Docker container on port 3000 on local
-      run: |
-        docker run -d -p 3000:3000 hieubeo2369/web:latest
+        tags: hieubeo2369/web:${{ github.ref_name }}
