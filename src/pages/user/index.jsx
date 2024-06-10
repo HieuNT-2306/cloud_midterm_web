@@ -55,7 +55,6 @@ const User = () => {
         message: `Sửa thông tin của ${user.name} thành công`,
         type: 'success'
       });
-      log.info(`Web: Student ${user.name} updated successfully`);
     }
     else {
       setNotify({
@@ -63,7 +62,6 @@ const User = () => {
         message: `Thêm thành công thực tập sinh ${user.name}`,
         type: 'success'
       });
-      log.info(`Web: Student ${user.name} added successfully`);
     }
   }
 
@@ -80,7 +78,6 @@ const User = () => {
       message: `Xóa thành công thực tập sinh ${user.name}` ,
       type: 'error'
     });
-    log.info(`Student ${user.name} deleted successfully`);
   }
   const genderMap = {
     "male": "Nam",

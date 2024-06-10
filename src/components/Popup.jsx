@@ -1,6 +1,5 @@
 import { Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
 import React from 'react'
-import CustomButton from './controls/CustomButton';
 import ActionButton from './controls/ActionButton';
 
 export default function Popup(props) {
