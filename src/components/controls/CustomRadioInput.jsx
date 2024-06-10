@@ -3,7 +3,6 @@ import React from 'react'
 
 export default function CustomRadioInput(props) {
     const { name, label, value, onChange, items} = props
-    console.log(items);
     return (
         <FormControl>
             <FormLabel>{label}</FormLabel>

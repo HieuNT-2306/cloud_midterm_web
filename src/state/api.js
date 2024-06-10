@@ -1,7 +1,8 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import {createApi } from '@reduxjs/toolkit/query/react'
+import baseQueryWithLogging from '../helper/apiClient';
 
 export const api = createApi({ 
-    baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API_URL }),
+    baseQuery: baseQueryWithLogging,
     reducerPath: 'adminApi',
     tagTypes: ['User'],
     endpoints: (builder) => ({ 

@@ -9,6 +9,7 @@ import Popup from '../../components/Popup'
 import Notification from '../../components/Notification'
 import ConfirmDialog from '../../components/ConfirmDialog'
 import UserForm from './userForm'
+import log from '../../helper/logger'
  
 const headCell = [
   { id: 'name', label: 'Họ và tên', width: '20%', align: 'left'},
@@ -32,7 +33,6 @@ const User = () => {
     TblPagination,
     dataAfterPagingAndSorting
   } = Usetable(data, headCell, filterFn);
-  console.log(data)
 
   const handleSearch = (e) => {
     const target = e.target;
@@ -66,14 +66,12 @@ const User = () => {
   }
 
   const openInPopup = (user) => {
-    console.log("user for editing:", user);
     setDataForEdit(user);
     setOpenPopup(true);
   }
 
   const onDelete = (user) => {
     setConfirmDialog({ ...confirmDialog, isOpen: false });
-    console.log("id", user._id);
     deleteUser(user._id);
     setNotify({
       isOpen: true,
