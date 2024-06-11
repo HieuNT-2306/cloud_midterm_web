@@ -25,11 +25,19 @@ export const api = createApi({
             }),
             invalidatesTags: ['User']
         }),
+        loginUser: builder.mutation({
+            query: (credential) => ({
+                url: `auth/login`,
+                method: 'POST',
+                body: credential
+            })
+        }),
     })
 })
   
 export const {
     useGetUserQuery,
     useDeleteUserMutation,
-    usePostUserMutation
+    usePostUserMutation,
+    useLoginUserMutation
 } = api;

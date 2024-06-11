@@ -7,10 +7,12 @@ import globalReducer from './state'
 import { Provider } from 'react-redux';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { api } from './state/api';
+import userReducer from './state/userSlice';
 
 const store = configureStore({
   reducer: {
     global: globalReducer,
+    user: userReducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefault) => getDefault().concat(api.middleware),
