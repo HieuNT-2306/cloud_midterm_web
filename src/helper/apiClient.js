@@ -8,7 +8,7 @@ export function getCookie(name) {
 }
 
 const customBaseQuery = fetchBaseQuery({
-  baseUrl: process.env.REACT_APP_API_URL,
+  baseUrl: process.env.REACT_APP_API_URL || 'http://192.168.49.2:30002/',
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     return headers;
@@ -16,12 +16,12 @@ const customBaseQuery = fetchBaseQuery({
 });
 
 const baseQueryWithLogging = async (args, api, extraOptions) => {
-  log.info(`Web: \n - Starting Request: ${args.url || args} \n - Method: ${args.method || 'GET'}`);
+  log.info(`Web: \n- Starting Request: ${args.url || args} \n- Method: ${args.method || 'GET'} \n- Endpoint: ${process.env.REACT_APP_API_URL}\n`);
   const result = await customBaseQuery(args, api, extraOptions);
   if (result.error) {
-    log.error(`Web: \n- Error Response: ${args.url || args} with status ${result.error.status || 'Undefined'}\n- Method: ${args.method || 'Undefined'}\n`, result.error);
+    log.error(`Web: \n- Error Response: ${args.url || args} with status ${result.error.status || 'Undefined'}\n- Method: ${args.method || 'Undefined'}\n- Endpoint: ${process.env.REACT_APP_API_URL}`, result.error);
   } else {
-    log.info(`Web: \n- Response: ${args.url || args} with status ${result.meta.response.status}\n- Method: ${args.method || 'GET'}\n`);
+    log.info(`Web: \n- Response: ${args.url || args} with status ${result.meta.response.status}\n- Method: ${args.method || 'GET'}\n- Endpoint: ${process.env.REACT_APP_API_URL}\n`);
   }
   return result;
 };
